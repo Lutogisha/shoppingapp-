@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingapp/pages/bottomnav.dart';
+import 'package:shoppingapp/pages/home.dart';
+import 'package:shoppingapp/pages/login.dart';
 import 'package:shoppingapp/pages/onboarding.dart';
+import 'package:shoppingapp/pages/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BottomNav(),
+      home: Home(),
     );
   }
 }
