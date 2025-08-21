@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
             ),
             const SizedBox(height: 15),
             Container(
-              height: 200, // reduced from 240
+              height: 200,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: products
@@ -188,7 +188,7 @@ class ProductTile extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(image, height: 100, width: 100, fit: BoxFit.cover), // reduced height
+          Image.asset(image, height: 100, width: 100, fit: BoxFit.cover), 
           const SizedBox(height: 5),
           Text(name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
           Row(

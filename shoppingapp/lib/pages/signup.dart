@@ -64,10 +64,10 @@ class _SignupState extends State<Signup> {
                 Center(
                   child: Image.asset(
                     "lib/images/login.PNG",
-                    height: 200,
+                    height: 250,
                   ),
                 ),
-                const SizedBox(height: 30.0),
+                const SizedBox(height: 0.0),
                 Center(
                   child: Text(
                     "Sign Up",

@@ -15,17 +15,17 @@ class _OnboardingState extends State<Onboarding> {
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "lib/images/Boarding.png",
+      "image": "lib/images/Boarding.PNG",
       "title": "Stay Updated\nWith Deals", 
       "desc": "Discover premium products designed to\nfit your lifestyle."
     },
     {
-      "image": "lib/images/computer.png",
+      "image": "lib/images/computer.PNG",
       "title": "Find Your\nPerfect Style",
       "desc": "Browse through the latest collections\nand trends made just for you."
     },
     {
-      "image": "lib/images/Board.png",
+      "image": "lib/images/Board.PNG",
       "title": "Shop Easily\nAnd Securely",
       "desc": "Enjoy a seamless shopping experience\nwith fast and secure checkout."
     },
