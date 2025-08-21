@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                     fontSize: 16, fontWeight: FontWeight.w400, color: Colors.grey[700])),
             const SizedBox(height: 20),
+            
             Container(
               padding: EdgeInsets.only(left: 15),
               decoration: BoxDecoration(
