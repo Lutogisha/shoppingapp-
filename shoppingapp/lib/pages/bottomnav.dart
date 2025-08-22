@@ -32,22 +32,33 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[CurrentTabIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 60.0,
-        backgroundColor: Colors.white,
-        color: Colors.black,
-        animationDuration: const Duration(milliseconds: 500),
-        onTap: (int index) {
-          setState(() {
-            CurrentTabIndex = index;
-          });
-        },
-        items: const [
-          Icon(Icons.home_outlined, color: Colors.white),
-          Icon(Icons.shopping_bag_outlined, color: Colors.white),
-          Icon(Icons.person_outlined, color: Colors.white),
-        ],
-      ),
+      bottomNavigationBar: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: CurrentTabIndex,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white70,
+      backgroundColor: Colors.black, 
+      onTap: (int index) {
+      setState(() {
+      CurrentTabIndex = index;
+    });
+  },
+    items: const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home_outlined),
+      label: "Home",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_bag_outlined),
+      label: "Shop",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person_outlined),
+      label: "Account",
+    ),
+  ],
+),
+
     );
   }
 }

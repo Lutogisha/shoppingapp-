@@ -15,37 +15,16 @@ class _SignupState extends State<Signup> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  Future<void> register() async {
+  void _signup() {
     if (_formKey.currentState!.validate()) {
-      String email = emailController.text.trim();
-      await Future.delayed(const Duration(seconds: 1));
-
-      if (email == "test@example.com") {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text(
-              "Account already exists",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.green,
-            content: Text(
-              "Registered Successfully",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
-        );
-
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const Login()),
-        );
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Registered Successfully"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
@@ -67,17 +46,15 @@ class _SignupState extends State<Signup> {
                     height: 250,
                   ),
                 ),
-                const SizedBox(height: 0.0),
+                const SizedBox(height: 10),
                 Center(
                   child: Text(
                     "Sign Up",
-                    style: AppWidget.semiboldTextFeildStyle().copyWith(
-                      fontSize: 28,
-                      color: Colors.black87,
-                    ),
+                    style: AppWidget.semiboldTextFeildStyle()
+                        .copyWith(fontSize: 28, color: Colors.black87),
                   ),
                 ),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 10),
                 Center(
                   child: Text(
                     "Please fill in the details below to create your account",
@@ -85,9 +62,10 @@ class _SignupState extends State<Signup> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 40.0),
+                const SizedBox(height: 40),
+                
                 Text("Name", style: AppWidget.semiboldTextFeildStyle()),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(
@@ -105,9 +83,11 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+
+                const SizedBox(height: 20),
+
                 Text("Email", style: AppWidget.semiboldTextFeildStyle()),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(
@@ -129,9 +109,11 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+
+                const SizedBox(height: 20),
+
                 Text("Password", style: AppWidget.semiboldTextFeildStyle()),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(
@@ -153,7 +135,9 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30.0),
+
+                const SizedBox(height: 30),
+
                 Center(
                   child: SizedBox(
                     width: double.infinity,
@@ -164,9 +148,8 @@ class _SignupState extends State<Signup> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        elevation: 3,
                       ),
-                      onPressed: register,
+                      onPressed: _signup,
                       child: const Text(
                         "SIGN UP",
                         style: TextStyle(
@@ -178,31 +161,26 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30.0),
+
+                const SizedBox(height: 30),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       "Already have an account? ",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
-                      ),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Login()),
-                        );
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       child: const Text(
                         "Sign In",
                         style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                     ),
                   ],

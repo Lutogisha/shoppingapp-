@@ -18,6 +18,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Onboarding(),
+        '/home': (context) => BottomNav(),
+        '/login': (context) => Login(),
+        '/signup': (context) => const Signup(), 
+       
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -36,7 +44,6 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BottomNav(),
     );
   }
 }
