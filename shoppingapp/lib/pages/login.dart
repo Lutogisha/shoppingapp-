@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingapp/pages/signup.dart';
-import 'package:shoppingapp/pages/home.dart';
-import 'package:shoppingapp/widget/support_widget.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -18,12 +16,13 @@ class _LoginState extends State<Login> {
     String email = emailController.text.trim();
     String password = passwordController.text;
 
-    if (email == "lutogishalutogisha3@gmail.com" && password == "123456") {
+    if (email.isNotEmpty && password.isNotEmpty) {
+      // Successful login, navigate to Home
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Invalid email or password"),
+          content: Text("Please enter email and password"),
           backgroundColor: Colors.redAccent,
         ),
       );
@@ -32,6 +31,17 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    const labelStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      color: Colors.black87,
+    );
+
+    const hintStyle = TextStyle(
+      fontSize: 14,
+      color: Colors.black54,
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -44,23 +54,26 @@ class _LoginState extends State<Login> {
                 child: Image.asset("lib/images/login.PNG", height: 250),
               ),
               const SizedBox(height: 10),
-              Center(
+              const Center(
                 child: Text(
                   "Sign In",
-                  style: AppWidget.semiboldTextFeildStyle()
-                      .copyWith(fontSize: 28, color: Colors.black87),
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
-              Center(
+              const Center(
                 child: Text(
                   "Please fill in the details below to continue",
-                  style: AppWidget.lightTextFeildStyle(),
+                  style: TextStyle(fontSize: 18, color: Colors.black54),
                   textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(height: 40),
-              Text("Email", style: AppWidget.semiboldTextFeildStyle()),
+              Text("Email", style: labelStyle),
               const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -73,12 +86,13 @@ class _LoginState extends State<Login> {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Enter your email",
+                    hintStyle: hintStyle,
                     icon: Icon(Icons.email_outlined),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              Text("Password", style: AppWidget.semiboldTextFeildStyle()),
+              Text("Password", style: labelStyle),
               const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -92,6 +106,7 @@ class _LoginState extends State<Login> {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Enter your password",
+                    hintStyle: hintStyle,
                     icon: Icon(Icons.lock_outline),
                   ),
                 ),
@@ -124,20 +139,21 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account? "),
+                  const Text(
+                    "Don't have an account? ",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Signup()),
-                      );
+                      Navigator.pushReplacementNamed(context, '/signup');
                     },
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],

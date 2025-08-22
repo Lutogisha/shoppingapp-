@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingapp/pages/login.dart';
-import 'package:shoppingapp/widget/support_widget.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -23,13 +22,23 @@ class _SignupState extends State<Signup> {
           backgroundColor: Colors.green,
         ),
       );
-      
       Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    const labelStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      color: Colors.black87,
+    );
+
+    const hintStyle = TextStyle(
+      fontSize: 14,
+      color: Colors.black54,
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -47,24 +56,26 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
+                const Center(
                   child: Text(
                     "Sign Up",
-                    style: AppWidget.semiboldTextFeildStyle()
-                        .copyWith(fontSize: 28, color: Colors.black87),
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87),
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
+                const Center(
                   child: Text(
                     "Please fill in the details below to create your account",
-                    style: AppWidget.lightTextFeildStyle(),
+                    style: TextStyle(fontSize: 18, color: Colors.black54),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 const SizedBox(height: 40),
                 
-                Text("Name", style: AppWidget.semiboldTextFeildStyle()),
+                Text("Name", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -79,6 +90,7 @@ class _SignupState extends State<Signup> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter your name",
+                      hintStyle: hintStyle,
                       icon: Icon(Icons.person_outline),
                     ),
                   ),
@@ -86,7 +98,7 @@ class _SignupState extends State<Signup> {
 
                 const SizedBox(height: 20),
 
-                Text("Email", style: AppWidget.semiboldTextFeildStyle()),
+                Text("Email", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -105,6 +117,7 @@ class _SignupState extends State<Signup> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter your email",
+                      hintStyle: hintStyle,
                       icon: Icon(Icons.email_outlined),
                     ),
                   ),
@@ -112,7 +125,7 @@ class _SignupState extends State<Signup> {
 
                 const SizedBox(height: 20),
 
-                Text("Password", style: AppWidget.semiboldTextFeildStyle()),
+                Text("Password", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -131,6 +144,7 @@ class _SignupState extends State<Signup> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: "Enter your password",
+                      hintStyle: hintStyle,
                       icon: Icon(Icons.lock_outline),
                     ),
                   ),
