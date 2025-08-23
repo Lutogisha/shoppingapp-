@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingapp/widget/support_widget.dart';
+import 'payment_details.dart'; 
 
-class ProductDetail extends StatefulWidget {
-  const ProductDetail({super.key});
+class ProductDetail extends StatelessWidget {
+  final String name;
+  final String image;
+  final String price;
+  final String description;
 
-  @override
-  State<ProductDetail> createState() => _ProductDetailState();
-}
+  const ProductDetail({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.price,
+    required this.description,
+  });
 
-class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,70 +25,101 @@ class _ProductDetailState extends State<ProductDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
-          Stack(
-            children: [ GestureDetector(
-              onTap: (){
-                Navigator.pop(context);
-              },
-                child: Container(
-                  margin: EdgeInsets.only(left: 20.0),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(30),
+            Stack(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const Icon(Icons.arrow_back_ios_new_outlined),
                   ),
-                  child: const Icon(Icons.arrow_back_ios_new_outlined),
                 ),
-              ),
-              Center(
-                child: Image.asset(
-                  "images/headphones.PNG", 
-                   height: 300,),
-              )
-           ] 
-           ),
+                Center(
+                  child: Image.asset(image, height: 308),
+                ),
+              ],
+            ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
                 ),
-                width: MediaQuery.of(context).size.width, child:  Column(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                       children: [
-                        Text("Headphones", style: AppWidget.boldTextFeildStyle(),),
                         Text(
-                              "\$300",
-                              style: TextStyle(
-                                color: Color(0xFFfd6f3e), 
-                                fontSize: 23.0, 
-                                fontWeight: FontWeight.bold),
-                            )
+                          name,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            color: Color(0xFFfd6f3e),
+                            fontSize: 23.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
-                    SizedBox(height: 20.0,),
-                    Text("Details", style: AppWidget.semiboldTextFeildStyle(),),
-                    SizedBox(height: 10.0,),
-                    Text("The product is very good. It have a 1 year waranty, Headphones come in three main types: over-ear, on-ear, and in-ear. Over-ear headphones are the largest, completely enclosing your ears for superior comfort and excellent noise isolation."),
-                    SizedBox(height: 80.0,),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFfd6f3e,), borderRadius: BorderRadius.circular(10),
+                    const SizedBox(height: 20.0),
+                    Text("Details", style: AppWidget.semiboldTextFeildStyle()),
+                    const SizedBox(height: 10.0),
+                    Text(description),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaymentDetails(
+                              productName: name,
+                              productPrice: price,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 14.0),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFfd6f3e),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: const Center(
+                          child: Text(
+                            "Buy Now",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
-                      width: MediaQuery.of(context).size.width,
-                      child: Center(child: Text("Buy Now", style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),)),
-                    )
+                    ),
                   ],
-                ),),
-            )
-            
+                ),
+              ),
+            ),
           ],
         ),
       ),

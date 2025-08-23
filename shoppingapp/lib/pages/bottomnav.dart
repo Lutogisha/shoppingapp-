@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shoppingapp/pages/Order.dart';
 import 'package:shoppingapp/pages/home.dart';
 import 'package:shoppingapp/pages/profile.dart';
@@ -13,52 +12,50 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;
-  late Home HomePage;
-  late Order order;
-  late Profile profile;
-  int CurrentTabIndex = 0;
+  late Home homePage;
+  late Order orderPage;
+  late Profile profilePage;
+  int currentTabIndex = 0;
 
   @override
   void initState() {
-    HomePage = Home();
-    order = Order();
-    profile = Profile();
-    pages = [HomePage, order, profile];
-
+    homePage = Home();
+    orderPage = Order();
+    profilePage = Profile();
+    pages = [homePage, orderPage, profilePage];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[CurrentTabIndex],
+      body: pages[currentTabIndex],
       bottomNavigationBar: BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      currentIndex: CurrentTabIndex,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.white70,
-      backgroundColor: Colors.black, 
-      onTap: (int index) {
-      setState(() {
-      CurrentTabIndex = index;
-    });
-  },
-    items: const [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home_outlined),
-      label: "Home",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.shopping_bag_outlined),
-      label: "Shop",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person_outlined),
-      label: "Account",
-    ),
-  ],
-),
-
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentTabIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        backgroundColor: Colors.black,
+        onTap: (int index) {
+          setState(() {
+            currentTabIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_outlined),
+            label: "Shop",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outlined),
+            label: "Account",
+          ),
+        ],
+      ),
     );
   }
 }
