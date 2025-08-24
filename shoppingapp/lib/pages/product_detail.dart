@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppingapp/widget/support_widget.dart';
-import 'payment_details.dart'; 
+import 'payment_details.dart';
 
 class ProductDetail extends StatelessWidget {
   final String name;
@@ -81,7 +80,10 @@ class ProductDetail extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20.0),
-                    Text("Details", style: AppWidget.semiboldTextFeildStyle()),
+                    const Text(
+                      "Details",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
                     const SizedBox(height: 10.0),
                     Text(description),
                     const Spacer(),
@@ -93,6 +95,7 @@ class ProductDetail extends StatelessWidget {
                             builder: (context) => PaymentDetails(
                               productName: name,
                               productPrice: price,
+                              productImage: image,
                             ),
                           ),
                         );
