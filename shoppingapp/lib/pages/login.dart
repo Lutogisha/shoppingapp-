@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
     String password = passwordController.text;
 
     if (email.isNotEmpty && password.isNotEmpty) {
-      // Successful login, navigate to Home
+     
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

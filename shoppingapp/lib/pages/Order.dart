@@ -1,17 +1,40 @@
 import 'package:flutter/material.dart';
 import '../storage/order_storage.dart';
 
-class Order extends StatelessWidget {
+class Order extends StatefulWidget {
   const Order({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final orders = OrderStorage.orders;
+  _OrderState createState() => _OrderState();
+}
 
+class _OrderState extends State<Order> {
+  List orders = [];
+
+  @override
+  void initState() {
+    super.initState();
+    orders = OrderStorage.orders;
+  }
+
+  void refreshOrders() {
+    setState(() {
+      orders = OrderStorage.orders;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Orders"),
         backgroundColor: const Color(0xFFfd6f3e),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: refreshOrders,
+          )
+        ],
       ),
       body: orders.isEmpty
           ? const Center(
