@@ -167,7 +167,7 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -181,7 +181,7 @@ class _OnboardingState extends State<Onboarding> {
       width: isActive ? 16 : 8,
       height: 8,
       decoration: BoxDecoration(
-        color: isActive ? Colors.blueAccent : Colors.grey.shade400,
+        color: isActive ? const Color.fromARGB(255, 0, 4, 10) : Colors.grey.shade400,
         borderRadius: BorderRadius.circular(8),
       ),
     );

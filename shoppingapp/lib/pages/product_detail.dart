@@ -6,6 +6,7 @@ class ProductDetail extends StatelessWidget {
   final String image;
   final String price;
   final String description;
+  final String category;
 
   const ProductDetail({
     super.key,
@@ -13,6 +14,7 @@ class ProductDetail extends StatelessWidget {
     required this.image,
     required this.price,
     required this.description,
+    required this.category,
   });
 
   @override
@@ -82,7 +84,7 @@ class ProductDetail extends StatelessWidget {
                     const SizedBox(height: 20.0),
                     const Text(
                       "Details",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 10.0),
                     Text(description),
@@ -96,6 +98,7 @@ class ProductDetail extends StatelessWidget {
                               productName: name,
                               productPrice: price,
                               productImage: image,
+                              productCategory: category, // Pass category here
                             ),
                           ),
                         );

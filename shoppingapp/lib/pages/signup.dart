@@ -51,7 +51,7 @@ class _SignupState extends State<Signup> {
               children: [
                 Center(
                   child: Image.asset(
-                    "lib/images/login.PNG",
+                    "lib/images/shop.jpg",
                     height: 250,
                   ),
                 ),
@@ -74,7 +74,6 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                
                 Text("Name", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
@@ -95,9 +94,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 Text("Email", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
@@ -122,9 +119,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 Text("Password", style: labelStyle),
                 const SizedBox(height: 10),
                 Container(
@@ -149,9 +144,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 Center(
                   child: SizedBox(
                     width: double.infinity,
@@ -175,9 +168,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 30),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

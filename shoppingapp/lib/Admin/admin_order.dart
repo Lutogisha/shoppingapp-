@@ -1,39 +1,31 @@
 import 'package:flutter/material.dart';
 import '../storage/order_storage.dart';
 
-class Order extends StatefulWidget {
-  const Order({super.key});
+class AdminOrder extends StatefulWidget {
+  const AdminOrder({super.key});
 
   @override
-  _OrderState createState() => _OrderState();
+  State<AdminOrder> createState() => _AdminOrderState();
 }
 
-class _OrderState extends State<Order> {
-  List<OrderModel> orders = [];
-
-  @override
-  void initState() {
-    super.initState();
-    orders = OrderStorage.orders;
-  }
-
+class _AdminOrderState extends State<AdminOrder> {
   void refreshOrders() {
-    setState(() {
-      orders = OrderStorage.orders;
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    final orders = OrderStorage.orders;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Current Orders"),
+        title: const Text("All Orders"),
         backgroundColor: const Color(0xFFfd6f3e),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: refreshOrders,
-          )
+          ),
         ],
       ),
       body: orders.isEmpty
@@ -50,28 +42,34 @@ class _OrderState extends State<Order> {
                 return Card(
                   margin: const EdgeInsets.all(8),
                   child: ListTile(
-                    leading: Image.asset(
-                      order.imageUrl,
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
-                    ),
                     title: Text(
-                      order.productName,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      order.userName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(order.userEmail),
+                        const SizedBox(height: 4),
+                        Text("Product: ${order.productName}"),
                         Text("Category: ${order.productCategory}"),
                         Text("Price: ${order.productPrice}"),
-                        Text("Status: ${order.status}",
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFFfd6f3e),
-                              fontWeight: FontWeight.bold,
-                            )),
+                        Text("Status: ${order.status}"),
                       ],
+                    ),
+                    trailing: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFfd6f3e),
+                        minimumSize: const Size(60, 35),
+                      ),
+                      onPressed: () {
+                        OrderStorage.markAsDelivered(order);
+                        setState(() {});
+                      },
+                      child: const Text("Done", style: TextStyle(fontSize: 14)),
                     ),
                   ),
                 );

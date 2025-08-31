@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingapp/pages/signup.dart';
+import 'package:shoppingapp/admin/admin_home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,13 +17,27 @@ class _LoginState extends State<Login> {
     String email = emailController.text.trim();
     String password = passwordController.text;
 
-    if (email.isNotEmpty && password.isNotEmpty) {
-     
-      Navigator.pushReplacementNamed(context, '/home');
-    } else {
+    if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Please enter email and password"),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
+
+    if (email == "lutogishalutogisha3@gmail.com" && password == "user@123") {
+      Navigator.pushReplacementNamed(context, '/home');
+    } else if (email == "admin3@gmail.com" && password == "admin@123") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AdminHome()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Invalid email or password"),
           backgroundColor: Colors.redAccent,
         ),
       );
@@ -51,7 +66,7 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Image.asset("lib/images/login.PNG", height: 250),
+                child: Image.asset("lib/images/shop.jpg", height: 250),
               ),
               const SizedBox(height: 10),
               const Center(

@@ -41,6 +41,7 @@ class CategoryProducts extends StatelessWidget {
                           image: product["image"]!,
                           price: product["price"]!,
                           description: product["description"] ?? "No description available",
+                          category: product["category"]!, // pass category
                         ),
                       ),
                     );
