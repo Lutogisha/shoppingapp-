@@ -62,6 +62,25 @@ class _HomeState extends State<Home> {
   {"image": "lib/images/mouse.PNG", "name": "Mouse Pro Max", "price": "\$1300", "category": "Mouse", "description": "High-end professional mouse optimized for gaming, precision work, and advanced computing. Features advanced sensors, ergonomic design, and durable construction."},
 ];
 
+List<Map<String, String>> filteredProducts = [];
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    filteredProducts = products;
+    searchController.addListener(() {
+      filterProducts();
+    });
+  }
+
+  void filterProducts() {
+    String query = searchController.text.toLowerCase();
+    setState(() {
+      filteredProducts = products.where((prod) => prod["name"]!.toLowerCase().contains(query)).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +93,7 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Hey, Lutogisha", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black)),
+                Text("Hellow, Mr Jacob", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black)),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset("lib/images/person.PNG", height: 50, width: 50, fit: BoxFit.cover),
@@ -82,12 +101,13 @@ class _HomeState extends State<Home> {
               ],
             ),
             const SizedBox(height: 5),
-            Text("Good Morning", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.grey[700])),
+            Text("Good Afternoon", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.grey[700])),
             const SizedBox(height: 20),
             Container(
               padding: EdgeInsets.only(left: 15),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: TextField(
+                controller: searchController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Search Products",
@@ -135,7 +155,7 @@ class _HomeState extends State<Home> {
               height: 200,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: products.map((prod) => ProductTile(image: prod["image"]!, name: prod["name"]!, price: prod["price"]!)).toList(),
+                children: filteredProducts.map((prod) => ProductTile(image: prod["image"]!, name: prod["name"]!, price: prod["price"]!)).toList(),
               ),
             ),
           ],

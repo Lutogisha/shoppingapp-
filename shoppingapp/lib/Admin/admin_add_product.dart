@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class AdminAddProduct extends StatefulWidget {
   const AdminAddProduct({super.key});
@@ -10,6 +11,7 @@ class AdminAddProduct extends StatefulWidget {
 
 class _AdminAddProductState extends State<AdminAddProduct> {
   File? _image;
+  File? _video;
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -23,6 +25,60 @@ class _AdminAddProductState extends State<AdminAddProduct> {
     'Mouse',
     'Computers'
   ];
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  Future<void> _pickVideo() async {
+    final XFile? pickedVideo =
+        await _picker.pickVideo(source: ImageSource.gallery);
+    if (pickedVideo != null) {
+      setState(() {
+        _video = File(pickedVideo.path);
+      });
+    }
+  }
+
+  void _addProduct() {
+    if (_nameController.text.isEmpty ||
+        _priceController.text.isEmpty ||
+        _detailController.text.isEmpty ||
+        _selectedCategory == null ||
+        _image == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all fields and select an image')),
+      );
+      return;
+    }
+    print("Product Name: ${_nameController.text}");
+    print("Product Price: ${_priceController.text}");
+    print("Product Detail: ${_detailController.text}");
+    print("Category: $_selectedCategory");
+    print("Image Path: ${_image!.path}");
+    print("Video Path: ${_video?.path ?? 'No video selected'}");
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Product added successfully!')),
+    );
+
+    _nameController.clear();
+    _priceController.clear();
+    _detailController.clear();
+    setState(() {
+      _image = null;
+      _video = null;
+      _selectedCategory = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +106,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
             ),
             const SizedBox(height: 10),
             GestureDetector(
-              onTap: () {},
+              onTap: _pickImage,
               child: Center(
                 child: Container(
                   width: 120,
@@ -69,6 +125,14 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                       ? const Icon(Icons.camera_alt, size: 50, color: Colors.grey)
                       : null,
                 ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: ElevatedButton.icon(
+                onPressed: _pickVideo,
+                icon: const Icon(Icons.video_library),
+                label: Text(_video == null ? "Upload Video" : "Video Selected"),
               ),
             ),
             const SizedBox(height: 20),
@@ -120,7 +184,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _addProduct,
                 child: const Text(
                   "Add Product",
                   style: TextStyle(fontSize: 18),
