@@ -19,7 +19,7 @@ class _AdminOrderState extends State<AdminOrder> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("All Orders"),
+        title: const Text("All Orders", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
         backgroundColor: const Color(0xFFfd6f3e),
         actions: [
           IconButton(
@@ -31,8 +31,8 @@ class _AdminOrderState extends State<AdminOrder> {
       body: orders.isEmpty
           ? const Center(
               child: Text(
-                "No orders yet.",
-                style: TextStyle(fontSize: 18),
+                "Your order hasn't been received yet.",
+                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             )
           : ListView.builder(

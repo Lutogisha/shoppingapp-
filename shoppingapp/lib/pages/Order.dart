@@ -27,7 +27,7 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Current Orders"),
+        title: const Text("Current Orders", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
         backgroundColor: const Color(0xFFfd6f3e),
         actions: [
           IconButton(
@@ -40,7 +40,7 @@ class _OrderState extends State<Order> {
           ? const Center(
               child: Text(
                 "No orders yet.",
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             )
           : ListView.builder(

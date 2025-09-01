@@ -109,8 +109,8 @@ class _AdminAddProductState extends State<AdminAddProduct> {
               onTap: _pickImage,
               child: Center(
                 child: Container(
-                  width: 120,
-                  height: 120,
+                  width: 150,
+                  height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.grey),
@@ -132,7 +132,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
               child: ElevatedButton.icon(
                 onPressed: _pickVideo,
                 icon: const Icon(Icons.video_library),
-                label: Text(_video == null ? "Upload Video" : "Video Selected"),
+                label: Text(_video == null ? "Upload Video" : "Video Uploaded"),
               ),
             ),
             const SizedBox(height: 20),

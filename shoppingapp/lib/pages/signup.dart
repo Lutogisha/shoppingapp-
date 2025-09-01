@@ -52,7 +52,7 @@ class _SignupState extends State<Signup> {
                 Center(
                   child: Image.asset(
                     "lib/images/shop.jpg",
-                    height: 250,
+                    height: 200,
                   ),
                 ),
                 const SizedBox(height: 10),
